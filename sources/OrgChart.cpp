@@ -40,49 +40,49 @@ namespace ariel
     }
     OrgChart::Iterator OrgChart::begin()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::end()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::begin_level_order()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::end_level_order()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::begin_reverse_order()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::end_reverse_order()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::begin_preorder()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
     OrgChart::Iterator OrgChart::end_preorder()
     {
-        Node* ptr = nullptr;
+        Node* ptr = &root;
         Iterator temp(ptr);
         return temp;
     }
