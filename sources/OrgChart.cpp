@@ -68,7 +68,7 @@ namespace ariel
         Iterator temp(ptr);
         return temp;
     }
-    OrgChart::Iterator OrgChart::end_reverse_order()
+    OrgChart::Iterator OrgChart::reverse_order()
     {
         Node* ptr = &root;
         Iterator temp(ptr);

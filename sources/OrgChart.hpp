@@ -34,7 +34,7 @@ namespace ariel
             Iterator begin_level_order();
             Iterator end_level_order();
             Iterator begin_reverse_order();
-            Iterator end_reverse_order();
+            Iterator reverse_order();
             Iterator begin_preorder();
             Iterator end_preorder();
             friend std::ostream& operator<<(std::ostream&, const OrgChart&);

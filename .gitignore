@@ -32,3 +32,6 @@
 *.app
 demo
 test
+
+# Directories
+.vscode
