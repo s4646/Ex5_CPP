@@ -12,11 +12,11 @@ namespace ariel
             std::vector<Node> kids;
         public:
             Node();
-            Node(std::string);
+            Node(std::string&);
             ~Node();
             std::string getName();
             std::vector<Node>& getKids();
-            void addKid(std::string);
+            void addKid(std::string&);
             int size();
             friend std::ostream& operator<<(std::ostream&, const Node&);
     };

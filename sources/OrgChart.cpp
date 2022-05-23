@@ -27,7 +27,7 @@ namespace ariel
                 q.push(temp.at(i));
             }
             q.pop();
-            if (q.size()>0)
+            if (!q.empty())
             {
                 m_pointer = &q.front();
             }
@@ -49,12 +49,13 @@ namespace ariel
             for (size_t i = temp.size() -1; i >= 0; i--)
             {
                 stk.push(temp.at(i));
-                if (temp.at(i).getKids().size() == 0)
+                if (temp.at(i).getKids().empty())
                 {
-                    stk.push(Node{"nullptr"});
+                    string s = "nullptr";
+                    stk.push(Node{s});
                 }
             }
-            if (stk.size()>0)
+            if (!stk.empty())
             {
                 m_pointer = &stk.top();
                 stk.pop();
@@ -68,7 +69,7 @@ namespace ariel
         // pre-order
         if (mode==2)
         {
-            if(vec.size() == 0)
+            if(vec.empty())
             {
                 m_pointer = nullptr;
                 return *this;
@@ -82,6 +83,7 @@ namespace ariel
             }
             return *this;
         }
+        return *this;
     }
     Node* OrgChart::Iterator::operator->()
     {
@@ -95,27 +97,29 @@ namespace ariel
     OrgChart::OrgChart() : totalNodes(0) {}
     OrgChart::~OrgChart() {}
     
-    OrgChart OrgChart::add_root(string r)
+    OrgChart OrgChart::add_root(string& r)
     {
         Node temp(r);
         root = temp;
         return *this;
     }
-    OrgChart OrgChart::add_sub(string inChart, string addTo)
+    OrgChart OrgChart::add_sub(string& inChart, string& addTo)
     {
         return *this;
     }
 
     OrgChart::Iterator OrgChart::begin()
     {
-        Iterator it(&root, 0);
-        it.getQueue().push(*it.getM_pointer());
-        return it;
+        // Iterator it(&root, 0);
+        // it.getQueue().push(*it.getM_pointer());
+        // return it;
+        return begin_level_order();
     }
     OrgChart::Iterator OrgChart::end()
     {
-        Iterator it(nullptr, 0);
-        return it;
+        // Iterator it(nullptr, 0);
+        // return it;
+        return end_level_order();
     }
 
     OrgChart::Iterator OrgChart::begin_level_order()
