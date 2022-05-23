@@ -2,6 +2,9 @@
 #include "Node.hpp"
 #include <string>
 #include <iostream>
+#include <queue>
+#include <stack>
+#include <vector>
 
 namespace ariel
 {
@@ -15,14 +18,22 @@ namespace ariel
             {
                 private:
                     Node* m_pointer;
+                    int mode;
+                    queue<Node> q;
+                    stack<Node> stk;
+                    vector<Node> vec;
                 public:
-                    Iterator(Node* ptr) : m_pointer(ptr) {}
+                    Iterator(Node* ptr, int m) : m_pointer(ptr), mode(m) {}
                     ~Iterator() {}
                     Node& operator*();
                     bool operator!=(const Iterator&) const;
                     bool operator==(const Iterator&) const;
                     Iterator& operator++(); // Prefix
                     Node* operator->(); // return node's name
+                    queue<Node>& getQueue();
+                    stack<Node>& getStack();
+                    vector<Node>& getVector();
+                    Node* getM_pointer();
             };
 
             OrgChart();
