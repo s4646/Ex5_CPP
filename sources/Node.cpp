@@ -15,6 +15,8 @@ namespace ariel
         kids.push_back(Node(kid));
     }
     int Node::size() {return name.size();}
+    int Node::length() {return name.size();}
+    char Node::at(size_t i) {return name.at(i);}
     ostream& operator<<(ostream& os, const Node& node)
     {
         os << node.name;

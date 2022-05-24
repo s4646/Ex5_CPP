@@ -19,6 +19,8 @@ namespace ariel
             std::vector<Node>& getKids();
             void addKid(const std::string&);
             int size();
+            int length();
+            char at(size_t);
             friend std::ostream& operator<<(std::ostream&, const Node&);
     };
 }

@@ -92,9 +92,11 @@ namespace ariel
     
     OrgChart& OrgChart::add_root(const string& r)
     {
-        Node temp(r);
-        root = temp;
-        totalNodes = 1;
+        if(totalNodes==0)
+        {
+            totalNodes = 1;
+        }
+        root.setName(r);
         return *this;
     }
     OrgChart& OrgChart::add_sub(const string& inChart, const string& addTo)
