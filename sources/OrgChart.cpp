@@ -7,7 +7,7 @@ namespace ariel
 {
     string& OrgChart::Iterator::operator*()
     {
-        return m_pointer->getName();
+        return this->getM_pointer()->getName();
     }
     bool OrgChart::Iterator::operator==(const Iterator& other) const
     {
@@ -121,7 +121,7 @@ namespace ariel
     {
         return begin_level_order();
     }
-    OrgChart::Iterator OrgChart::end()
+    OrgChart::Iterator OrgChart::end() const
     {
         return end_level_order();
     }
@@ -133,7 +133,7 @@ namespace ariel
         it.getQueue().push(it.getM_pointer());
         return it;
     }
-    OrgChart::Iterator OrgChart::end_level_order()
+    OrgChart::Iterator OrgChart::end_level_order() const
     {
         if (totalNodes == 0) {throw runtime_error("chart is empty!");}
         Iterator it(nullptr, 0);
@@ -152,7 +152,7 @@ namespace ariel
             Node* temp = q.front();
             stk.push(q.front());
             q.pop();
-            for (int i = temp->getKids().size()-1; i > -1; i--)
+            for (int i = (int)temp->getKids().size()-1; i > -1; i--)
             {
                 q.push(&temp->getKids().at((size_t)i));
             }
@@ -160,7 +160,7 @@ namespace ariel
         it.setM_pointer(stk.top());
         return it;
     }
-    OrgChart::Iterator OrgChart::reverse_order()
+    OrgChart::Iterator OrgChart::reverse_order() const
     {
         if (totalNodes == 0) {throw runtime_error("chart is empty!");}
         Iterator it(nullptr, 1);
@@ -174,7 +174,7 @@ namespace ariel
         it.getVector().push_back(it.getM_pointer());
         return it;
     }
-    OrgChart::Iterator OrgChart::end_preorder()
+    OrgChart::Iterator OrgChart::end_preorder() const
     {
         if (totalNodes == 0) {throw runtime_error("chart is empty!");}
         Iterator it(nullptr, 2);

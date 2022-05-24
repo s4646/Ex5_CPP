@@ -42,13 +42,13 @@ namespace ariel
             OrgChart& add_root(const std::string&);
             OrgChart& add_sub(const std::string&, const std::string&);
             Iterator begin();
-            Iterator end();
+            Iterator end() const;
             Iterator begin_level_order();
-            Iterator end_level_order();
+            Iterator end_level_order() const;
             Iterator begin_reverse_order();
-            Iterator reverse_order();
+            Iterator reverse_order() const;
             Iterator begin_preorder();
-            Iterator end_preorder();
+            Iterator end_preorder() const;
             friend std::ostream& operator<<(std::ostream&, const OrgChart&);
     };
 }
