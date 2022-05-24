@@ -5,6 +5,47 @@ using namespace std;
 
 namespace ariel
 {
+    OrgChart::Iterator::Iterator(const Iterator& other) : m_pointer(other.m_pointer), mode(other.mode) {} // copy constructor
+
+    OrgChart::Iterator::Iterator(Iterator&& other) noexcept // move constructor
+    {
+        m_pointer =other.m_pointer;
+        mode = other.mode;
+
+        other.m_pointer = nullptr;
+        other.mode = 0;
+    }
+
+    OrgChart::Iterator& OrgChart::Iterator::operator=(const Iterator& other) // copy assignment
+    {
+        // Guard self assignment
+        if (this == &other)
+        {
+            return *this;
+        }
+        this->~Iterator();
+        m_pointer = other.m_pointer;
+        mode = other.mode;
+        return *this;
+    }
+    OrgChart::Iterator& OrgChart::Iterator::operator=(Iterator&& other) noexcept // move assignment
+    {
+        // Guard self assignment
+        if (this == &other)
+        {
+            return *this;
+        }
+        this->~Iterator();
+        m_pointer = other.m_pointer;
+        mode = other.mode;
+
+        other.m_pointer = nullptr;
+        other.mode = 0;
+        return *this;
+    }
+
+    
+    
     string& OrgChart::Iterator::operator*()
     {
         return this->getM_pointer()->getName();
@@ -81,13 +122,59 @@ namespace ariel
     {
         return m_pointer;
     }
+
+     OrgChart& OrgChart::operator=(const OrgChart& other) // copy assignment
+    {
+        // Guard self assignment
+        if (this == &other)
+        {
+            return *this;
+        }
+        this->~OrgChart();
+        root = Node(other.root);
+        totalNodes = other.totalNodes;
+        return *this;
+    }
+    
+    OrgChart& OrgChart::operator=(OrgChart&& other) noexcept // move assignment
+    {
+        // Guard self assignment
+        if (this == &other)
+        {
+            return *this;
+        }
+        this->~OrgChart();
+        root = other.root;
+        totalNodes = other.totalNodes;
+
+        other.root.~Node();
+        other.totalNodes = 0;
+        return *this;
+    }
+
     queue<Node*>& OrgChart::Iterator::getQueue() {return q;}
+
     stack<Node*>& OrgChart::Iterator::getStack() {return stk;}
+
     vector<Node*>& OrgChart::Iterator::getVector() {return vec;}
+
     Node* OrgChart::Iterator::getM_pointer() {return m_pointer;}
+
     void OrgChart::Iterator::setM_pointer(Node* ptr) {m_pointer = ptr;}
 
     OrgChart::OrgChart() : totalNodes(0) {}
+
+    OrgChart::OrgChart(const OrgChart& other) : root(Node(other.root)), totalNodes(other.totalNodes) {} // copy constructor
+
+    OrgChart::OrgChart(OrgChart&& other) noexcept // move constructor
+    {
+        root = other.root;
+        totalNodes = other.totalNodes;
+
+        other.root.~Node();
+        other.totalNodes = 0;
+    }
+    
     OrgChart::~OrgChart() {}
     
     OrgChart& OrgChart::add_root(const string& r)

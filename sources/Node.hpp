@@ -13,7 +13,11 @@ namespace ariel
         public:
             Node();
             Node(const std::string&);
+            Node(const Node&);
+            Node(Node&&) noexcept;
             ~Node();
+            Node& operator=(const Node&);
+            Node& operator=(Node&&) noexcept;
             std::string& getName();
             void setName(const std::string&);
             std::vector<Node>& getKids();

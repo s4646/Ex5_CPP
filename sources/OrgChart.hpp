@@ -24,8 +24,12 @@ namespace ariel
                     std::vector<Node*> vec;
                 public:
                     Iterator(Node* ptr, int m) : m_pointer(ptr), mode(m) {}
+                    Iterator(const Iterator&);
+                    Iterator(Iterator&&) noexcept;
                     ~Iterator() {}
                     std::string& operator*();
+                    Iterator& operator=(const Iterator&);
+                    Iterator& operator=(Iterator&&) noexcept;
                     bool operator!=(const Iterator&) const;
                     bool operator==(const Iterator&) const;
                     Iterator& operator++(); // Prefix
@@ -38,7 +42,11 @@ namespace ariel
             };
 
             OrgChart();
+            OrgChart(const OrgChart&);
+            OrgChart(OrgChart&&) noexcept;
             ~OrgChart();
+            OrgChart& operator=(const OrgChart&);
+            OrgChart& operator=(OrgChart&&) noexcept;
             OrgChart& add_root(const std::string&);
             OrgChart& add_sub(const std::string&, const std::string&);
             Iterator begin();
