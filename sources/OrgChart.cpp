@@ -1,5 +1,6 @@
 #include "OrgChart.hpp"
 #include <stdexcept>
+#include <map>
 
 using namespace std;
 
@@ -197,6 +198,10 @@ namespace ariel
             if(*it == inChart)
             {
                 it->addKid(addTo);
+                for (size_t i = 0; i < it->getKids().size(); i++)
+                {
+                    it->getKids().at(i).level = it->level+1;
+                }
                 ++totalNodes;
                 return *this;
             }
@@ -268,9 +273,36 @@ namespace ariel
         return it;
     }
 
-    ostream& operator<<(ostream& os, const OrgChart& chart)
+    ostream& operator<<(ostream& os, OrgChart& chart)
     {
-        os << chart.root;
+        map<Node*, int> m;
+        int maxLevel = 0;
+        for (auto it = chart.begin_level_order(); it != chart.end_level_order(); ++it)
+        {
+            m.insert({it.getM_pointer(), it.getM_pointer()->level});
+            if(it.getM_pointer()->level > maxLevel)
+            {
+                maxLevel = it.getM_pointer()->level;
+            }
+        }
+        string indentation;
+        string elements;
+        for (size_t i = 0; i <= maxLevel; i++)
+        {
+            for(auto element : m)
+            {
+                if(element.second != i)
+                {
+                    continue;
+                }
+                elements += element.first->getName() +  "      ";
+                indentation += "|--------";
+            }
+            os << indentation << '|' << endl;
+            os << elements << endl;
+            indentation.clear();
+            elements.clear();
+        }
         return os;
     }
 }

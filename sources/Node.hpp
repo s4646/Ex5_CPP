@@ -25,6 +25,7 @@ namespace ariel
             int size();
             int length();
             char at(size_t);
+            int level = 0;
             friend std::ostream& operator<<(std::ostream&, const Node&);
     };
 }

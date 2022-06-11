@@ -57,6 +57,6 @@ namespace ariel
             Iterator reverse_order() const;
             Iterator begin_preorder();
             Iterator end_preorder() const;
-            friend std::ostream& operator<<(std::ostream&, const OrgChart&);
+            friend std::ostream& operator<<(std::ostream&, OrgChart&);
     };
 }

@@ -48,7 +48,7 @@ namespace ariel
     vector<Node>& Node::getKids() {return kids;}
     void Node::addKid(const string& kid)
     {
-        kids.push_back(Node(kid));
+        kids.emplace_back(Node(kid));
     }
     int Node::size() {return name.size();}
     int Node::length() {return name.size();}
